@@ -23,7 +23,6 @@ var taskFormHandler= function(event) {
   document.querySelector("select[name='task-type']").selectedIndex = 0;
 
     var isEdit = formEl.hasAttribute("data-task-id");
- // PUT THIS BELOW `var isEdit = ...` in `taskFormHandler()`
 
 // has data attribute, so get task id and call function to complete edit process
     if (isEdit) {
@@ -53,6 +52,9 @@ var createTaskEl = function(taskDataObj) {
         taskInfoEl.className = "task-info";
         taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
         listItemEl.appendChild(taskInfoEl);
+
+        var taskActionsEl = createTaskActions(taskIdCounter);
+        listItemEl.appendChild(taskActionsEl);
 
         switch (taskDataObj.status) {
             case "to do":
